@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Option from '../Options';
-import { ActionFetchGETid, chatRoomIdSetState, ActionFetchIdSetState } from '../../action/index'
+import { GetChatRoomsRequest, ActionFetchIdSetState, setIdChatroomRequest } from '../../action/index'
 import { connect } from 'react-redux';
 
 class SelectComponent extends Component {
@@ -10,13 +10,13 @@ class SelectComponent extends Component {
   }
 
   componentWillMount() {
-    const { ActionFetchGETid } = this.props
-    ActionFetchGETid()
+    const { getChatrooms } = this.props
+    getChatrooms()
   }
 
   handleChange(event) {
-    const { ActionFetchIdSetState } = this.props
-    ActionFetchIdSetState(event.target.value)
+    const { changeId } = this.props
+    changeId(event.target.value)
   }
 
   render() {
@@ -36,8 +36,8 @@ const mapStateToProps = function (store) {
 }
 
 const mapDispatchToProps = {
-  ActionFetchGETid: ActionFetchGETid,
-  ActionFetchIdSetState: ActionFetchIdSetState
+  getChatrooms: GetChatRoomsRequest,
+  changeId: setIdChatroomRequest
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SelectComponent) 

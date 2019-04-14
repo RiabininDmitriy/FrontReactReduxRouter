@@ -8,7 +8,6 @@ class ChatElement extends React.Component{
       <div>
           <b id = "chatElem1"> {`${mssObj.user.user} : `} </b>
           <b id = "chatElem">{mssObj.message}</b>
-          {/* <b>{`  :  ${mssObj.time}`}</b> */}
       </div>  
         )
     }

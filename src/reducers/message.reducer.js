@@ -3,17 +3,15 @@ const initialMessageState = {
 }
 
 export const messageReducer = function (state = initialMessageState, action) {
-    console.log(action.type)
     switch (action.type) {
-        case 'GETmessage': {
+        case 'GET_MESSAGES_REQUEST_SUCCESS': {
             const ActionData = action.data.id
             state.message[ActionData] = action.data.message
             const newState = Object.assign({}, { ...state })
             return newState
-        } case 'POSTmessage': {
+        } case 'POST_MESSAGE_SUCCESS': {
             const ActionData = action.data.id
             const newState = Object.assign({}, state)
-            console.log(ActionData)
             newState.message[ActionData] = newState.message[ActionData].concat([action.data.message])
             return newState
         }

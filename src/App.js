@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
+// import { Router } from 'react-router';
+// import {ConnectedRouter} from 'react-router-redux'
 import './App.css';
 import { Provider } from 'react-redux'
-import store from './store'
+import store, {history} from './store'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import createHistory from "history/createBrowserHistory";
 import About from './components/About'
-import AboutPage from './components/AboutPage'
 import Form from './components/Form'
 import Chat from './components/Chat'
-import FormAutContanier from './components/FormAutContanier'
 import {AppRouter} from './routes/index'
 
 export let Container = props => <div className={`Contanier ${props.className}`}>
@@ -18,7 +18,6 @@ export let Container = props => <div className={`Contanier ${props.className}`}>
 </div>
 
 
-const history = createHistory();
 
 
 class App extends Component {
@@ -26,11 +25,8 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router history={history}>
-          <Switch>
             <AppRouter></AppRouter>
-          </Switch>
         </Router>
-
       </Provider>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ChatElement from '../Chat-Element';
-import {ActionFetchGET} from '../../action/index'
+import { getMessagesRequest} from '../../action/index'
 import { connect } from 'react-redux';
 
 
@@ -10,7 +10,7 @@ class Chat extends Component {
     }
 
     componentWillMount() {
-        this.props.ActionFetchGET(this.props.storePropsId)
+        this.props.getMessages(this.props.storePropsId)
     }
 
 
@@ -31,7 +31,7 @@ const mapStateToProps = function (store) {
 }
 
 const mapDispatchToProps = {
-    ActionFetchGET:ActionFetchGET
+    getMessages:getMessagesRequest
     }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Chat) 

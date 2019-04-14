@@ -1,4 +1,4 @@
-export const sendApi = (data,method,url) => {
+export const sendApi = (method) => (data, url) => {
     let motherOption = {
         headers: {
             'Accept': 'application/json',
@@ -15,3 +15,7 @@ export const sendApi = (data,method,url) => {
     .then(res => res.json())
 }
 
+export default {
+    sendApiPost: sendApi("POST"),
+    sendApiGet: sendApi("GET")
+}

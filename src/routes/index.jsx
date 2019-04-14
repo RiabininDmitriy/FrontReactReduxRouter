@@ -16,8 +16,8 @@ const PrivateRoute = () => {
 const PublicRoute = () => {
     return (
         <Switch>
-            {/* <Redirect from="/" to="/login" /> */}
             <Route exact path="/login" component={FormAutContainer} />
+            <Redirect from="/" to="/login" />
         </Switch>)
 }
 

@@ -1,10 +1,26 @@
-import { createStore, compose, applyMiddleware } from 'redux'
 import rootReducer from './reducers'
-import thunk from 'redux-thunk';
+import { createStore, applyMiddleware ,compose} from 'redux'
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from './sagas/index'
+import {routerMiddleware, syncHistoryWithStore} from 'react-router-redux'
+import createHistory from "history/createBrowserHistory";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, 
-    composeEnhancers(applyMiddleware(thunk)));
+export const history = createHistory();
+
+const middleware = routerMiddleware(history)
+// создаем мидлвар saga
+const sagaMiddleware = createSagaMiddleware()
+// монтируем его в хранилище
+const store = createStore(
+    rootReducer,
+    composeEnhancer(    applyMiddleware(middleware, sagaMiddleware))
+)
+
+// затем запускаем saga
+sagaMiddleware.run(rootSaga)
+
+// отрисовываем приложение
 
 export default store
